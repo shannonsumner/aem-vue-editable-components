@@ -1,6 +1,4 @@
-import Utils from './utils/Utils';
-
-export { Utils };
+import { default as Utils } from './utils/Utils';
 export * from './editable/ComponentMapping';
 export { default as CompositeEditableComponent } from './editable/CompositeEditableComponent.vue';
 export { default as CompositeModelProvider } from './editable/CompositeModelProvider.vue';
