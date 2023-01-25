@@ -10,8 +10,9 @@
 
 <script lang="ts">
   import { Component, defineComponent, PropType, VNode } from 'vue';
-  import Utils from '@/utils/Utils';
   import ModelProvider from '@/editable/ModelProvider.vue';
+  // eslint-disable-next-line import/no-cycle
+  import Utils from '@/utils/Utils';
 
   export default defineComponent({
     name: 'CompositeModelProvider',

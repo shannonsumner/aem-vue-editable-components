@@ -8,6 +8,12 @@
   import { ModelManager, PathUtils } from '@adobe/aem-spa-page-model-manager';
   import Utils from '@/utils/Utils';
 
+  declare global {
+    interface Window {
+      ModelManager: typeof ModelManager;
+    }
+  }
+
   export default defineComponent({
     name: 'ModelProvider',
     inheritAttrs: false,
@@ -44,6 +50,12 @@
     setup(props, context) {
       // console.log('ModelProvider properties: ', props);
       // console.log('ModelProvider attributes: ', context.attrs);
+      let modelManager = ModelManager;
+      if (typeof window.ModelManager !== 'undefined') {
+        modelManager = window.ModelManager;
+      }
+
+      return { modelManager };
     },
     data() {
       return {
@@ -85,10 +97,16 @@
       if (this.injectPropsOnInit) {
         this.updateData(this.updatedCqPath);
       }
-      ModelManager.addListener(this.updatedCqPath, this.updateDataListener);
+      this.modelManager.addListener(
+        this.updatedCqPath,
+        this.updateDataListener
+      );
     },
     unmounted() {
-      ModelManager.removeListener(this.updatedCqPath, this.updateDataListener);
+      this.modelManager.removeListener(
+        this.updatedCqPath,
+        this.updateDataListener
+      );
     },
     methods: {
       async updateData(cqPath: string) {
@@ -109,7 +127,8 @@
             Utils.getCQPath({ pagePath, itemPath, injectPropsOnInit }));
 
         if (path) {
-          ModelManager.getData({ path, forceReload: this.cqForceReload })
+          this.modelManager
+            .getData({ path, forceReload: this.cqForceReload })
             .then((data) => {
               if (data && Object.keys(data).length > 0) {
                 Object.assign(this.updatedProps, Utils.modelToProps(data));

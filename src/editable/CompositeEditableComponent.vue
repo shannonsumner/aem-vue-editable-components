@@ -8,6 +8,7 @@
 <script lang="ts">
   import { Component, defineComponent, PropType, VNode } from 'vue';
   import EditableComponent from '@/editable/EditableComponent.vue';
+  // eslint-disable-next-line import/no-cycle
   import Utils from '@/utils/Utils';
 
   interface ReloadForceAble {

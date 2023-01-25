@@ -21,8 +21,8 @@
   import { Model } from '@adobe/aem-spa-page-model-manager';
   import { ComponentMapping } from '@adobe/aem-spa-component-mapping';
   import classNames from 'classnames';
-  import Utils from '@/utils/Utils';
   import ContainerPlaceholder from '@/components/ContainerPlaceholder.vue';
+  import Utils from '@/utils/Utils';
 
   interface PageModel extends Model {
     ':type': string;
