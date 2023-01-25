@@ -1,18 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# Spa React Editable Components 
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+[![License](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/adobe/aem-react-editable-components/blob/master/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/@adobe/aem-react-editable-components.svg)](https://www.npmjs.com/package/@adobe/aem-react-editable-components)
+[![Documentation](https://img.shields.io/badge/docs-api-blue)](https://opensource.adobe.com/aem-react-editable-components/)
 
-## Recommended IDE Setup
+[![codecov](https://codecov.io/gh/adobe/aem-react-editable-components/branch/master/graph/badge.svg)](https://codecov.io/gh/adobe/aem-react-editable-components)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=adobe_aem-react-editable-components&metric=alert_status)](https://sonarcloud.io/dashboard?id=adobe_aem-react-editable-components)
+[![Known Vulnerabilities](https://snyk.io/test/github/adobe/aem-react-editable-components/badge.svg)](https://snyk.io/test/github/adobe/aem-react-editable-components)
+[![Dependencies](https://badges.renovateapi.com/github/adobe/aem-react-editable-components)](https://app.renovatebot.com/dashboard#github/adobe/aem-react-editable-components)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This project provides the React components and integration layer to get you started with the Adobe Experience Manager Site Editor.
 
-## Type Support For `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Installation
+```
+npm install @adobe/aem-react-editable-components
+```
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Documentation 
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+* [SPA Editor Overview](https://www.adobe.com/go/aem6_5_docs_spa_en)
+* [SPA Architecture](https://docs.adobe.com/content/help/en/experience-manager-65/developing/headless/spas/spa-architecture.html)
+* [Getting Started with the AEM SPA Editor and Angular](https://docs.adobe.com/content/help/en/experience-manager-learn/spa-angular-tutorial/overview.html)
+* [Getting Started with the AEM SPA Editor and React](https://docs.adobe.com/content/help/en/experience-manager-learn/spa-react-tutorial/overview.html)
+
+## Contributing
+
+Contributions are welcome! Read the [Contributing Guide](CONTRIBUTING.md) for more information.
+
+### Licensing
+
+This project is licensed under the Apache V2 License. See [LICENSE](LICENSE) for more information.
+
