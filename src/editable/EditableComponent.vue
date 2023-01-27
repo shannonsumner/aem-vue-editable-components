@@ -10,7 +10,6 @@
 
 <script lang="ts">
   import { Component, defineComponent, PropType, VNode } from 'vue';
-  import classNames from 'classnames';
   import Utils from '@/utils/Utils';
 
   interface ReloadForceAble {
@@ -120,10 +119,10 @@
           containerCssClassNamesAsArray = containerCssClassNames.split(' ');
         }
 
-        return classNames([
+        return [
           ...appliedCssClassNamesAsArray,
           ...containerCssClassNamesAsArray,
-        ]);
+        ];
       },
 
       disabledWcmMode() {

@@ -20,7 +20,6 @@
   import { defineComponent, PropType } from 'vue';
   import { Model } from '@adobe/aem-spa-page-model-manager';
   import { ComponentMapping } from '@adobe/aem-spa-component-mapping';
-  import classNames from 'classnames';
   import ContainerPlaceholder from '@/components/ContainerPlaceholder.vue';
   import Utils from '@/utils/Utils';
 
@@ -88,7 +87,7 @@
       },
       containerProps() {
         const containerProps: { [key: string]: string } = {
-          class: classNames('aem-container'),
+          class: 'aem-container',
         };
 
         if (this.isInEditor) {
@@ -100,7 +99,7 @@
       placeholderProps() {
         return {
           cqPath: this.cqPath,
-          placeholderClassNames: 'new section',
+          placeholderClassNames: ['new', 'section'],
         };
       },
       disabledWcmMode() {

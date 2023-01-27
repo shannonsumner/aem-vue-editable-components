@@ -14,7 +14,6 @@
 <script lang="ts">
   import { defineComponent, PropType } from 'vue';
   import AllowedComponentPlaceholder from '@/components/AllowedComponentPlaceholder.vue';
-  import classNames from 'classnames';
 
   interface AllowedComponent {
     path: string;
@@ -22,7 +21,7 @@
   }
 
   interface PlaceHolderModel extends Object {
-    placeholderClassNames: string;
+    placeholderClassNames: string[];
     cqPath: string;
   }
 
@@ -61,10 +60,15 @@
           : this.emptyLabel;
       },
       placeholderClassNames() {
-        return classNames(
-          'aem-AllowedComponent--list',
-          this.placeholderProps?.placeholderClassNames
-        );
+        const placeholderClassNames = [];
+        if (Array.isArray(this.placeholderProps?.placeholderClassNames)) {
+          placeholderClassNames.push(
+            // eslint-disable-next-line no-unsafe-optional-chaining
+            ...this.placeholderProps?.placeholderClassNames
+          );
+        }
+        placeholderClassNames.push('aem-AllowedComponent--list');
+        return placeholderClassNames;
       },
     },
   });

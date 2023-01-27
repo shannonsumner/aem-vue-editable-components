@@ -18,7 +18,6 @@
   import { defineComponent, PropType } from 'vue';
   import { Model } from '@adobe/aem-spa-page-model-manager';
   import { ComponentMapping } from '@adobe/aem-spa-component-mapping';
-  import classNames from 'classnames';
   import Utils from '@/utils/Utils';
 
   interface PageModel extends Model {
@@ -94,8 +93,8 @@
         return Utils.getChildPages(this.cqChildren, this.componentMapping);
       },
       containerProps() {
-        const containerProps: { [key: string]: string } = {
-          class: classNames('aem-page', this.cssClassNames),
+        const containerProps: { [key: string]: string[] | string } = {
+          class: ['aem-page', this.cssClassNames],
         };
 
         if (this.isInEditor) {

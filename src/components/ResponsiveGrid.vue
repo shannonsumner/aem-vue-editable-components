@@ -20,7 +20,6 @@
   import { defineComponent, PropType } from 'vue';
   import { ComponentMapping } from '@adobe/aem-spa-component-mapping';
   import { Model } from '@adobe/aem-spa-page-model-manager';
-  import classNames from 'classnames';
   import ContainerPlaceholder from '@/components/ContainerPlaceholder.vue';
   import Utils from '@/utils/Utils';
 
@@ -122,8 +121,8 @@
         );
       },
       containerProps() {
-        const containerProps: { [key: string]: string } = {
-          class: classNames('aem-container', this.gridClassNames),
+        const containerProps: { [key: string]: string[] | string } = {
+          class: ['aem-container', this.gridClassNames],
         };
 
         if (this.isInEditor) {
@@ -135,11 +134,7 @@
       placeholderProps() {
         return {
           cqPath: this.cqPath,
-          placeholderClassNames: classNames(
-            'new',
-            'section',
-            'aem-Grid-newComponent'
-          ),
+          placeholderClassNames: ['new', 'section', 'aem-Grid-newComponent'],
         };
       },
       disabledWcmMode() {

@@ -1,5 +1,4 @@
 import { defineComponent, markRaw } from 'vue';
-import classNames from 'classnames';
 import { mount } from '@vue/test-utils';
 import Utils from '@/utils/Utils';
 import CompositeEditableComponent from '@/editable/CompositeEditableComponent.vue';
@@ -39,9 +38,12 @@ describe('EditableComponent ->', () => {
     },
     computed: {
       className() {
-        return classNames(CHILD_COMPONENT_CLASS_NAME, {
-          [IN_EDITOR_CLASS_NAME]: this.isInEditor,
-        });
+        return [
+          CHILD_COMPONENT_CLASS_NAME,
+          {
+            [IN_EDITOR_CLASS_NAME]: this.isInEditor,
+          },
+        ];
       },
     },
     template: `
