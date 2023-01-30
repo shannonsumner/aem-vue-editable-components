@@ -7,21 +7,23 @@
     :placeholder-props="placeholderProps"
     :title="title"
   />
-  <template v-if="disabledWcmMode">
-    <component
-      :is="childComponent"
-      v-for="childComponent of childComponents"
-      :key="childComponent.toString()"
-    />
+  <template v-else>
+    <template v-if="disabledWcmMode">
+      <component
+        :is="childComponent"
+        v-for="childComponent of childComponents"
+        :key="childComponent.toString()"
+      />
+    </template>
+    <div v-else v-bind="containerProps">
+      <component
+        :is="childComponent"
+        v-for="childComponent of childComponents"
+        :key="childComponent.toString()"
+      />
+      <ContainerPlaceholder v-if="isInEditor" v-bind="placeholderProps" />
+    </div>
   </template>
-  <div v-else v-bind="containerProps">
-    <component
-      :is="childComponent"
-      v-for="childComponent of childComponents"
-      :key="childComponent.toString()"
-    />
-    <ContainerPlaceholder v-if="isInEditor" v-bind="placeholderProps" />
-  </div>
 </template>
 
 <script lang="ts">
@@ -95,10 +97,6 @@
         type: String,
         default: '',
       },
-      gridClassNames: {
-        type: String,
-        default: '',
-      },
       isInEditor: {
         type: Boolean,
         default: Utils.isInEditor(),
@@ -113,9 +111,7 @@
         return (
           this.isInEditor &&
           this.allowedComponents &&
-          this.allowedComponents.applicable &&
-          // eslint-disable-next-line no-underscore-dangle
-          this._allowedComponentPlaceholderListEmptyLabel
+          this.allowedComponents.applicable
         );
       },
       emptyLabel() {
@@ -126,21 +122,11 @@
         );
       },
       childComponents() {
-        const containerProps = (itemKey: string) => {
-          let className = '';
-          if (this.columnClassNames && this.columnClassNames[itemKey]) {
-            className = this.columnClassNames[itemKey];
-          }
-
-          return {
-            class: className,
-          };
-        };
         return Utils.getChildComponents(
           this.cqPath,
           this.cqItems,
           this.cqItemsOrder,
-          containerProps,
+          (itemKey) => {},
           this.isInEditor,
           false,
           this.componentMapping
@@ -148,7 +134,7 @@
       },
       containerProps() {
         const containerProps: { [key: string]: string[] | string } = {
-          class: ['aem-container', this.gridClassNames],
+          class: ['aem-container'],
         };
 
         if (this.isInEditor) {
@@ -160,7 +146,7 @@
       placeholderProps() {
         return {
           cqPath: this.cqPath,
-          placeholderClassNames: ['new', 'section', 'aem-Grid-newComponent'],
+          placeholderClassNames: ['new', 'section'],
         };
       },
       disabledWcmMode() {

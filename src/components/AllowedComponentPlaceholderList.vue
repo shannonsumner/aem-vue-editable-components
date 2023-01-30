@@ -1,13 +1,12 @@
 <template>
   <div :class="placeholderClassNames">
-    <div :data-text="listLabel" class="aem-AllowedComponent--title">
-      <AllowedComponentPlaceholder
-        v-for="component of components"
-        :key="component.toString()"
-        :empty-label="component.title"
-        :path="component.path"
-      />
-    </div>
+    <div :data-text="listLabel" class="aem-AllowedComponent--title"></div>
+    <AllowedComponentPlaceholder
+      v-for="component of components"
+      :key="component.toString()"
+      :empty-label="component.title"
+      :path="component.path"
+    />
   </div>
 </template>
 

@@ -1,19 +1,29 @@
 <template>
-  <template v-if="disabledWcmMode">
-    <component
-      :is="childComponent"
-      v-for="childComponent of childComponents"
-      :key="childComponent.toString()"
-    />
+  <AllowedComponentPlaceholderList
+    v-if="showAllowedComponentPlaceholderList"
+    :components="allowedComponents.components"
+    :cq-path="cqPath"
+    :empty-label="emptyLabel"
+    :placeholder-props="placeholderProps"
+    :title="title"
+  />
+  <template v-else>
+    <template v-if="disabledWcmMode">
+      <component
+        :is="childComponent"
+        v-for="childComponent of childComponents"
+        :key="childComponent.toString()"
+      />
+    </template>
+    <div v-else v-bind="containerProps">
+      <component
+        :is="childComponent"
+        v-for="childComponent of childComponents"
+        :key="childComponent.toString()"
+      />
+      <ContainerPlaceholder v-if="isInEditor" v-bind="placeholderProps" />
+    </div>
   </template>
-  <div v-else v-bind="containerProps">
-    <component
-      :is="childComponent"
-      v-for="childComponent of childComponents"
-      :key="childComponent.toString()"
-    />
-    <ContainerPlaceholder v-if="isInEditor" v-bind="placeholderProps" />
-  </div>
 </template>
 
 <script lang="ts">
@@ -21,6 +31,7 @@
   import { ComponentMapping } from '@adobe/aem-spa-component-mapping';
   import { Model } from '@adobe/aem-spa-page-model-manager';
   import ContainerPlaceholder from '@/components/ContainerPlaceholder.vue';
+  import AllowedComponentPlaceholderList from '@/components/AllowedComponentPlaceholderList.vue';
   import Utils from '@/utils/Utils';
 
   interface AllowedComponent {
@@ -96,9 +107,24 @@
       },
     },
     components: {
+      AllowedComponentPlaceholderList,
       ContainerPlaceholder,
     },
     computed: {
+      showAllowedComponentPlaceholderList() {
+        return (
+          this.isInEditor &&
+          this.allowedComponents &&
+          this.allowedComponents.applicable
+        );
+      },
+      emptyLabel() {
+        return (
+          // eslint-disable-next-line no-underscore-dangle
+          (this._allowedComponentPlaceholderListEmptyLabel as string) ||
+          'No allowed components'
+        );
+      },
       childComponents() {
         const containerProps = (itemKey: string) => {
           let className = '';

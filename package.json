@@ -1,6 +1,6 @@
 {
   "name": "aem-vue-editable-components",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "description": "Provides Vue components and integration layer with Adobe Experience Manager Page Editor.",
   "keywords": [
     "spa",
